@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Services\ProductService;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+
+    public function boot(): void
+    {
+        View::composer('frontend.layouts.layout', function ($view) {
+            $productService = app(ProductService::class);
+
+            $view->with([
+                'navBrands'     => $productService->navbarBrands(),
+                'navCategories' => $productService->navbarCategories(),
+                'popularCloths' => $productService->popularCloths(6),
+            ]);
+        });
+    }
+}

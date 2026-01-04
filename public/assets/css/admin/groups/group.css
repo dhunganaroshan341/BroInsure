@@ -1,0 +1,14 @@
+@media (min-width: 1200px) {
+    .modal-xl {
+        --bs-modal-width: 100% !important;
+    }
+}
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 100%;
+    }
+}
+.customCheckClass {
+    width: 0.7em;
+    height: 0.7em;
+}

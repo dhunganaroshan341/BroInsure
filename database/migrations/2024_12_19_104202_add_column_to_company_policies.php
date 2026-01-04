@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('company_policies', function (Blueprint $table) {
+            $table->string('member_no')->nullable()->change();
+            $table->string('colling_period')->nullable();
+            $table->enum('policy_type',['retail','group'])->default('group')->comment('retail=individual,group=company');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('company_policies', function (Blueprint $table) {
+           $table->string('member_no')->nullable(false)->change();
+           $table->dropColumn('colling_period');
+        });
+    }
+};

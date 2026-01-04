@@ -1,0 +1,61 @@
+services:
+  
+  # PHP Service
+  insurance-app:
+    image: insurance-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: www-insurance
+    container_name: insurance-app
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./php/usr/local/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    networks:
+      - insurance-app-network
+      
+  #Nginx Service
+  insurance-webserver:
+    image: nginx:alpine
+    container_name: insurance-webserver
+    tty: true
+    ports:
+      - "8011:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+    networks:
+      - insurance-app-network
+
+  #PostgreSQL Service
+  insurance-db:
+    image: postgres:16.2
+    container_name: insurance-db
+    tty: true
+    environment:
+      POSTGRES_DB: insurance
+      POSTGRES_USER: insurance
+      POSTGRES_PASSWORD: password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: postgresql
+    volumes:
+      - insurance-dbdata:/var/lib/postgresql/data
+    networks:
+      - insurance-app-network
+
+#Docker Networks
+networks:
+  insurance-app-network:
+    name: insurance-app-network
+    driver: bridge
+#Volumes
+volumes:
+  insurance-dbdata:
+    driver: local

@@ -1,0 +1,43 @@
+@extends('backend.layout.main')
+@section('main')
+    <div class="row">
+
+        <h6 class="mb-0 text-uppercase col-10 ">{{ $title }}</h6>
+        @if ($access['isinsert'] == 'Y')
+            <div class="col-2 ">
+
+                <button class="btn btn-success float-end" id="addData">Add <i class="fas fa-plus "></i></button>
+            </div>
+        @endif
+    </div>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="datatables-reponsive" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>Name</th>
+                            <th>Client Code</th>
+                            <th>Mobile</th>
+                            <th>Land Line</th>
+                            <th>Email</th>
+                            <th>Province</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @include('backend.client.form_modal')
+    @include('backend.client.policy.policy_list')
+    @include('backend.client.policy.policy_modal')
+    @include('backend.client.policy.renew_policy_modal')
+@endsection

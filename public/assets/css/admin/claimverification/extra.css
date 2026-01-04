@@ -1,0 +1,25 @@
+:root {
+    --main-font-size: 12px;
+}
+.document-container {
+    /* border: 1px solid #F6CB6F; */
+    overflow: hidden;
+}
+.document-header {
+    color: #B3975C;
+}
+.employee-info-container, .balance-detail-info {
+    font-size: var(--main-font-size);
+}
+.balance-button-container {
+    text-align: center;
+}
+.balance-button-container span {
+    font-size: var(--main-font-size);
+}
+.balance-button-container button {
+    margin-bottom: var(--main-font-size);
+}
+.add-amount-container, .add-amount-container button span, .bottom-button button span, .document-list .d-flex {
+    font-size: var(--main-font-size);
+}
