@@ -27,6 +27,7 @@ use Yajra\DataTables\DataTables as DataTablesDataTables;
 
 class ClaimScreeningController extends BaseController
 {
+    
     /**
      * Display a listing of the resource.
      */

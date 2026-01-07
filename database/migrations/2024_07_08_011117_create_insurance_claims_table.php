@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->string('bill_amount')->nullable();
             $table->string('clinical_facility_name');
             $table->string('diagnosis_treatment');
-            $table->enum('clam_type', ['claim', 'draft'])->default('draft');
+            $table->enum('claim_type', ['claim', 'draft'])->default('draft');
             $table->foreignId('register_no')->nullable()->constrained('claim_registers');
             $table->foreignId('scrutiny_id')->nullable()->constrained('scrunities');
             $table->string('status')->nullable();

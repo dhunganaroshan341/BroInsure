@@ -13,9 +13,12 @@
                     <div class="col-sm">
                         <select id="fiscal_year_id" data-required="true" class="labelsmaller form-select form-select-sm"
                             name="fiscal_year_id">
-                            <option value="" selected="">Select Fiscal Year
-                            </option>
+                            <option value="" selected>Select Fiscal Year</option>
+                            @foreach($theFiscalYears as $year)
+                            <option value="{{ $year->id }}">{{ $year->name }}</option>
+                            @endforeach
                         </select>
+
                     </div>
                 </div>
             </div>
@@ -62,9 +65,9 @@
                             <option value="" selected="" disabled>Select Client
                             </option>
                             @foreach ($clients as $client)
-                                <option value="{{$client->id}}">
-                                    {{$client?->name}}
-                                </option>
+                            <option value="{{$client->id}}">
+                                {{$client?->name}}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -79,9 +82,9 @@
                             <option value="" selected="">Select Group
                             </option>
                             {{-- @foreach ($groups as $group)
-                                <option value="{{$group->id}}">
-                                    {{$group?->name}}
-                                </option>
+                            <option value="{{$group->id}}">
+                                {{$group?->name}}
+                            </option>
                             @endforeach --}}
                         </select>
                     </div>
@@ -107,8 +110,8 @@
                             name="heading_id">
                             <option value="" selected="">Select Heading</option>
                             @foreach ($headings as $heading)
-                                <option value="{{$heading->id}}">{{$heading->name}}
-                                </option>
+                            <option value="{{$heading->id}}">{{$heading->name}}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -119,7 +122,8 @@
                     <label class="labelsmaller col-sm-2" for="global_search">Global Search:</label>
                     <div class="col-sm">
                         <input class="form-control form-control-sm" type="text" name="global_search" id="global_search"
-                            placeholder="Search by Employee Code, Name, Lot Number, or Dependent Name"  aria-label=".form-control-sm example">
+                            placeholder="Search by Employee Code, Name, Lot Number, or Dependent Name"
+                            aria-label=".form-control-sm example">
                     </div>
                 </div>
             </div> --}}
